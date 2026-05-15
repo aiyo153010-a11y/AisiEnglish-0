@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>爱思英语 — 英语水平测试</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== 欢迎页 ==================== -->
+  <div id="screen-welcome" class="screen">
+
+    <!-- 装饰元素 -->
+    <div class="deco-star deco-s1">⭐</div>
+    <div class="deco-star deco-s2">🌟</div>
+    <div class="deco-star deco-s3">✨</div>
+    <div class="deco-star deco-s4">💫</div>
+    <div class="deco-cloud deco-c1">☁️</div>
+    <div class="deco-cloud deco-c2">☁️</div>
+
+    <!-- LOGO 区域 -->
+    <div class="hero-area">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="logo-box">
+          <span class="logo-icon">🦉</span>
+          <span class="logo-sparkle s1">✨</span>
+          <span class="logo-sparkle s2">⭐</span>
+          <span class="logo-sparkle s3">💖</span>
+        </div>
+        <div class="brand-name">爱思英语</div>
+        <div class="brand-en">Icy English</div>
+        <div class="hero-divider"></div>
+        <div class="hero-slogan">英语水平小测试</div>
+        <div class="hero-subtitle">发现孩子的英语潜力 · 因材施教</div>
+      </div>
+    </div>
+
+    <!-- 介绍卡片 -->
+    <div class="card intro-card">
+      <div class="card-header">
+        <span class="card-icon">🎯</span>
+        <span class="intro-title">欢迎来到爱思英语</span>
+      </div>
+      <p class="intro-text">
+        本测试将帮助您了解孩子目前的英语综合水平，包括<span class="highlight vocab-hl">词汇量</span>、<span class="highlight listen-hl">听力理解</span>和<span class="highlight read-hl">阅读能力</span>三个方面。
+      </p>
+      <p class="intro-text">
+        测试完成后，将根据结果为孩子推荐最合适的<span class="highlight course-hl">学习课程</span>和<span class="highlight suggest-hl">学习建议</span>，真正做到因材施教，寓教于乐！
+      </p>
+    </div>
+
+    <!-- 测试流程 -->
+    <div class="card flow-card">
+      <div class="card-header">
+        <span class="card-icon">🗺️</span>
+        <span class="flow-title">测试流程</span>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-item">
+          <div class="flow-num num-1">1</div>
+          <span>填写信息</span>
+        </div>
+        <span class="flow-arrow">➜</span>
+        <div class="flow-item">
+          <div class="flow-num num-2">2</div>
+          <span>词汇测试</span>
+        </div>
+        <span class="flow-arrow">➜</span>
+        <div class="flow-item">
+          <div class="flow-num num-3">3</div>
+          <span>听力测试</span>
+        </div>
+        <span class="flow-arrow">➜</span>
+        <div class="flow-item">
+          <div class="flow-num num-4">4</div>
+          <span>阅读测试</span>
+        </div>
+        <span class="flow-arrow">➜</span>
+        <div class="flow-item">
+          <div class="flow-num num-5">5</div>
+          <span>查看结果</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 特点卡片 -->
+    <div class="card features-card">
+      <div class="features-row">
+        <div class="feature-item">
+          <span class="feature-icon">🎮</span>
+          <span class="feature-label">寓教于乐</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📖</span>
+          <span class="feature-label">听说读写</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🎯</span>
+          <span class="feature-label">因材施教</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 开始按钮 -->
+    <div class="start-area">
+      <button class="btn-primary start-btn" onclick="App.startTest()">
+        <span class="btn-text">开始测试</span>
+        <span class="btn-emoji">🌈</span>
+      </button>
+      <div class="start-hint">预计用时 15-20 分钟</div>
+    </div>
+  </div>
+
+  <!-- ==================== 问卷页 ==================== -->
+  <div id="screen-survey" class="screen" style="display:none">
+
+    <!-- 步骤指示器 -->
+    <div class="step-indicator">
+      <div class="steps" id="stepDots"></div>
+      <div class="step-labels" id="stepLabels"></div>
+    </div>
+
+    <!-- 进度条 -->
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-bar">
+        <div class="fill" id="progressFill" style="width: 0%"></div>
+      </div>
+      <span class="progress-text" id="progressText">完成 0/3 模块</span>
+    </div>
+
+    <!-- 个人信息表单 -->
+    <div id="step-info" class="step-content">
+      <div class="section-title">请填写学生信息</div>
+
+      <div class="form-group">
+        <label class="form-label">中文姓名 <span class="required">*</span></label>
+        <input class="form-input" id="chineseName" placeholder="请输入中文姓名" maxlength="20">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">英文名 <span class="required">*</span></label>
+        <input class="form-input" id="englishName" placeholder="请输入英文名" maxlength="30">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">年级 <span class="required">*</span></label>
+        <select class="form-select" id="gradeSelect">
+          <option value="">请选择年级</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">曾学过的英语课程（可多选）</label>
+        <div class="checkbox-group" id="courseGroup"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">学校使用教材版本</label>
+        <div class="radio-group" id="textbookGroup"></div>
+      </div>
+    </div>
+
+    <!-- 词汇测试 -->
+    <div id="step-vocab" class="step-content" style="display:none">
+      <div class="question-header">
+        <span class="q-module-tag vocab-tag">词汇测试</span>
+        <span class="q-counter" id="vocabCounter"></span>
+      </div>
+      <div class="question-card card">
+        <div class="q-word" id="vocabWord"></div>
+        <div class="q-text" id="vocabQuestion"></div>
+        <div class="options-list" id="vocabOptions"></div>
+      </div>
+    </div>
+
+    <!-- 听力测试 -->
+    <div id="step-listening" class="step-content" style="display:none">
+      <div class="question-header">
+        <span class="q-module-tag listening-tag">听力测试</span>
+        <span class="q-counter" id="listeningCounter"></span>
+      </div>
+      <div class="question-card card">
+        <div class="audio-area">
+          <button class="audio-btn" id="audioBtn" onclick="App.playAudio()">
+            <span class="audio-icon">🎧</span>
+          </button>
+          <span class="audio-hint" id="audioHint">点击播放听力</span>
+        </div>
+        <div class="q-text" id="listeningQuestion"></div>
+        <div class="options-list" id="listeningOptions"></div>
+      </div>
+    </div>
+
+    <!-- 阅读测试 -->
+    <div id="step-reading" class="step-content" style="display:none">
+      <div class="question-header">
+        <span class="q-module-tag reading-tag">阅读测试</span>
+        <span class="q-counter" id="readingCounter"></span>
+      </div>
+      <div class="question-card card">
+        <div class="passage-box" id="passageBox" style="display:none">
+          <div class="passage-title" id="passageTitle"></div>
+          <div class="passage-text" id="passageText"></div>
+        </div>
+        <div class="q-text" id="readingQuestion"></div>
+        <div class="options-list" id="readingOptions"></div>
+      </div>
+    </div>
+
+    <!-- 底部导航 -->
+    <div class="nav-buttons">
+      <button class="btn-secondary" id="btnPrev" onclick="App.prevQuestion()">上一题</button>
+      <button class="btn-primary" id="btnNext" onclick="App.nextQuestion()">下一题</button>
+    </div>
+  </div>
+
+  <!-- ==================== 结果页 ==================== -->
+  <div id="screen-result" class="screen" style="display:none">
+
+    <div class="result-hero" id="resultHero">
+      <div class="hero-emoji" id="resultIcon"></div>
+      <div class="hero-level" id="resultLevel"></div>
+      <div class="hero-label" id="resultLabel"></div>
+    </div>
+
+    <div class="card info-summary">
+      <div class="summary-title">学生信息</div>
+      <div class="summary-row">
+        <span class="summary-label">姓名</span>
+        <span class="summary-value" id="infoName"></span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">年级</span>
+        <span class="summary-value" id="infoGrade"></span>
+      </div>
+      <div class="summary-row" id="infoCoursesRow" style="display:none">
+        <span class="summary-label">曾学课程</span>
+        <span class="summary-value" id="infoCourses"></span>
+      </div>
+      <div class="summary-row" id="infoTextbookRow" style="display:none">
+        <span class="summary-label">学校教材</span>
+        <span class="summary-value" id="infoTextbook"></span>
+      </div>
+    </div>
+
+    <div class="card score-card">
+      <div class="card-title">测试得分</div>
+      <div class="score-overview">
+        <div class="total-score-box">
+          <div class="total-score-num" id="totalScoreNum"></div>
+          <div class="total-score-total" id="totalScoreTotal"></div>
+        </div>
+        <div class="score-detail-list">
+          <div class="score-detail-item">
+            <span class="sd-label">📝 词汇</span>
+            <div class="sd-bar-wrap"><div class="sd-bar vocab-bar" id="vocabBar"></div></div>
+            <span class="sd-score" id="vocabScoreText"></span>
+          </div>
+          <div class="score-detail-item">
+            <span class="sd-label">🎧 听力</span>
+            <div class="sd-bar-wrap"><div class="sd-bar listen-bar" id="listenBar"></div></div>
+            <span class="sd-score" id="listenScoreText"></span>
+          </div>
+          <div class="score-detail-item">
+            <span class="sd-label">📖 阅读</span>
+            <div class="sd-bar-wrap"><div class="sd-bar read-bar" id="readBar"></div></div>
+            <span class="sd-score" id="readScoreText"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card recommend-card">
+      <div class="card-title">推荐课程</div>
+      <div class="recommend-desc" id="recommendDesc"></div>
+      <div class="course-list" id="courseList"></div>
+      <div class="focus-areas">
+        <div class="focus-title">重点学习方向</div>
+        <div id="focusList"></div>
+      </div>
+    </div>
+
+    <div class="card suggestion-card">
+      <div class="card-title">个性化学习建议</div>
+      <div class="suggestion-list" id="suggestionList"></div>
+    </div>
+
+    <div class="bottom-area">
+      <button class="btn-primary" onclick="App.retest()">重新测试</button>
+      <div class="contact-hint">如需详细课程咨询，请联系老师</div>
+    </div>
+  </div>
+
+  <!-- ==================== 加载页 ==================== -->
+  <div id="screen-loading" class="loading-page" style="display:none">
+    <div class="loading-spinner"></div>
+    <span>正在分析测试结果...</span>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
